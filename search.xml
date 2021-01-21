@@ -14,4 +14,43 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>Blog configuration: Github + Hexo</title>
+    <url>/2021/01/19/Github-Hexo/</url>
+    <content><![CDATA[<h2 id="Install-Git-and-Connect-Github"><a href="#Install-Git-and-Connect-Github" class="headerlink" title="Install Git and Connect Github"></a>Install Git and Connect Github</h2><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>(1) Download “Git” from Official website: <a href="https://git-scm.com/">https://git-scm.com</a><br>(2) Install “*.exe” file, choose “add to path”<br>(3) Check if installed successfully: in “cmd”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git</span><br></pre></td></tr></table></figure>
+<p>(4) right-click menu: “Git Bash Here”<br>(5) Set “user.name” and “user.email”: (replace with your own infomation)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;GitHub_user_name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;GitHub_user_email&quot;</span></span><br></pre></td></tr></table></figure>
+<p>(6) Generate “ssh-keygen”: (press “Enter”)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;GitHub_user_email&quot;</span></span><br></pre></td></tr></table></figure>
+<p>(7) Find “id_rsa.pub” in folder: “C:\Users&quot;user_name”.ssh”, open and copy all<br>(8) Paste the codes in: “New SSH key”, <a href="https://github.com/settings/ssh/new">https://github.com/settings/ssh/new</a>, “Title” as you wish<br>(9) Check the connection in “Git Bash”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh git@github.com</span><br></pre></td></tr></table></figure>
+<h2 id="Install-Node-js"><a href="#Install-Node-js" class="headerlink" title="Install Node.js"></a>Install Node.js</h2><h3 id="windows-1"><a href="#windows-1" class="headerlink" title="windows"></a>windows</h3><p>(1) Download “Node.js” from Official website: <a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a><br>(2) Install “*.exe” file (folder for example: “E:\Hexo\nodejs”), choose “add to path”<br>(3) Check if installed successfully: in “cmd”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node -v</span><br><span class="line">$ npm -v</span><br></pre></td></tr></table></figure>
+<p>(4) New folders in “E:\Hexo\nodejs” (example): “node_cache” and “node_global”<br>(5) Config global installation path, open “cmd” and input </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm config <span class="built_in">set</span> prefix <span class="string">&quot;E:\Hexo\nodejs\node_global&quot;</span></span><br><span class="line">$ npm config <span class="built_in">set</span> cache <span class="string">&quot;E:\Hexo\nodejs\node_cache&quot;</span></span><br></pre></td></tr></table></figure>
+<p>(6) Close “cmd” and config the “Environment Variables”: (1) “system variable-path-E:\Hexo\nodejs”, (2) “user variable-path-E:\Hexo\nodejs\node_global” (manual prefix path)</p>
+<h2 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h2><p>(1) Open “cmd” and input</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>(2) Check</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo -v</span><br></pre></td></tr></table></figure>
+<p>(3) New folder “E:\Hexo\blog”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> E:\Hexo\blog</span><br></pre></td></tr></table></figure>
+<p>(4) Initialize the website</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<p>(5) Install basic tools</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>(6) Generate static website</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<p>(7) Start local server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<h2 id="User-Hexo"><a href="#User-Hexo" class="headerlink" title="User Hexo"></a>User Hexo</h2><p>(1) Open”Github” and “New repository” <a href="https://github.com/new">https://github.com/new</a>, Repostitory name (must same as owner name): “owner_name”.github.io<br>(2) Initialize this repository with a README and “Create repository”<br>(3) Install “hexo-deployer-git”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>(4) Modify “E:\Hexo\blog_config.yml”, add</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  repository: https://github.com/<span class="string">&quot;owner_name&quot;</span>/<span class="string">&quot;owner_name&quot;</span>.github.io</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<p>(5) Upload to Github (Tip: “cmd” in “E:\Hexo\blog”)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean </span><br><span class="line">$ hexo g </span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<p>write blog</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo n <span class="string">&quot;blog_name&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
 </search>
